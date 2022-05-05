@@ -1,0 +1,25 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>170</x><y>20</y><w>210</w><h>100</h></coordinates><panel_attributes>Player
+--
+id Integer
+name String
+money Integer
+lstPlayerBuildings List&lt;Building&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>460</x><y>10</y><w>210</w><h>160</h></coordinates><panel_attributes>Game
+--
+id Integer
+bank Integer
+lstPlayers List&lt;Player&gt;
+lstLowCostBuildings List&lt;Building&gt;
+lstMidCostBuildings List&lt;Building&gt;
+lstHighCostBuildings List&lt;Building&gt;
+lstSpecialBuildings List&lt;Building&gt;
+lstHomeBuildings List&lt;Building&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>290</x><y>400</y><w>210</w><h>160</h></coordinates><panel_attributes>Building
+--
+id Integer
+name String
+categorie prEnum
+color Enum
+cost  Integer
+hearts Integer
+people Integer
+income Integer</panel_attributes><additional_attributes></additional_attributes></element></diagram>
