@@ -3,7 +3,7 @@ package fr.av.model.bll.managers;
 import fr.av.model.bll.bo.Player;
 
 public class PlayerManagerImpl implements PlayerManager {
-	private BuildingManager buildingManager = ManagerFactory.getBuildingManager();
+	private DeckManager deckManager = ManagerFactory.getDeckManager();
 	private static PlayerManager instance = null;
 
 	public static PlayerManager getInstance() {
@@ -36,9 +36,9 @@ public class PlayerManagerImpl implements PlayerManager {
 	}
 
 	@Override
-	public Player getNewPlayer(String name, Integer playerNumber) {
-		Player player = new Player(name, playerNumber);
-		player.getLstPlayerBuildings().add(buildingManager.getMarket());
+	public Player getNewPlayer(String name) {
+		Player player = new Player(name);
+		player.setLstPlayerBuildings(deckManager.getGameStarterDeck(1));
 		return player;
 	}
 

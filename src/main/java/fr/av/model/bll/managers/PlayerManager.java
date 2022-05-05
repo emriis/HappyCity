@@ -6,5 +6,5 @@ public interface PlayerManager {
 	void buyBuilding();
 	void updateMoney();
 	void claimSpecialBuilding();
-	Player getNewPlayer(String name,Integer PlayerNumber);
+	Player getNewPlayer(String name);
 }

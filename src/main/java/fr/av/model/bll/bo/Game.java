@@ -5,24 +5,24 @@ import java.util.List;
 
 public class Game {
 	private Integer id;
-	private Integer bank;
+	private Integer bank = 70;
 	private List<Player> lstPlayers = new ArrayList<>();
 	private List<Building> lstLowCostBuildings = new ArrayList<>();
 	private List<Building> lstMidCostBuildings = new ArrayList<>();
 	private List<Building> lstHighCostBuildings = new ArrayList<>();
 	private List<Building> lstSpecialBuildings = new ArrayList<>();
 	private List<Building> lstHomeBuildings = new ArrayList<>();
+	private String gameFirstPlayer;
 
 	public Game() {
 
 	}
 
-	public Game(Integer id, Integer bank, List<Player> lstPlayers, List<Building> lstLowCostBuildings,
+	public Game(Integer id, List<Player> lstPlayers, List<Building> lstLowCostBuildings,
 			List<Building> lstMidCostBuildings, List<Building> lstHighCostBuildings, List<Building> lstSpecialBuildings,
 			List<Building> lstHomeBuildings) {
 		super();
 		this.id = id;
-		this.bank = bank;
 		this.lstPlayers = lstPlayers;
 		this.lstLowCostBuildings = lstLowCostBuildings;
 		this.lstMidCostBuildings = lstMidCostBuildings;
@@ -94,13 +94,25 @@ public class Game {
 	public void setLstHomeBuildings(List<Building> lstHomeBuildings) {
 		this.lstHomeBuildings = lstHomeBuildings;
 	}
+	
+	
+
+	public String getGameFirstPlayer() {
+		return gameFirstPlayer;
+	}
+
+	public void setGameFirstPlayer(String gameFirstPlayer) {
+		this.gameFirstPlayer = gameFirstPlayer;
+	}
 
 	@Override
 	public String toString() {
 		return "Game [id=" + id + ", bank=" + bank + ", lstPlayers=" + lstPlayers + ", lstLowCostBuildings="
 				+ lstLowCostBuildings + ", lstMidCostBuildings=" + lstMidCostBuildings + ", lstHighCostBuildings="
 				+ lstHighCostBuildings + ", lstSpecialBuildings=" + lstSpecialBuildings + ", lstHomeBuildings="
-				+ lstHomeBuildings + "]";
+				+ lstHomeBuildings + ", gameFirstPlayer=" + gameFirstPlayer + "]";
 	}
+
+	
 
 }

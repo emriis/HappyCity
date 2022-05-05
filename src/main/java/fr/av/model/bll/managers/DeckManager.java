@@ -8,14 +8,14 @@ public interface DeckManager {
 
 	List<Building> getGameLowCostBuildingsDeck();
 
-	List<Building> getGameMediumCostBuildingsDeck();
+	List<Building> getGameMidCostBuildingsDeck();
 
 	List<Building> getGameHighCostBuildingsDeck();
-
-	List<Building> getGameSpecialBuildingsDeck();
 
 	List<Building> getGameHomeBuildingsDeck(Integer playerNumber);
 
 	List<Building> getGameStarterDeck(Integer playerNumber);
+
+	List<Building> getGameSpecialBuildingsDeck(Integer playerNumber);
 
 }

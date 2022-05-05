@@ -9,10 +9,9 @@ import fr.av.model.bll.bo.Game;
 import fr.av.model.bll.bo.Player;
 
 public class GameManagerImpl implements GameManager {
-	PlayerManager playerManager = ManagerFactory.getPlayerManager();
-	BuildingManager buildingManager = ManagerFactory.getBuildingManager();
-	DeckManager deckManager = ManagerFactory.getDeckManager();
-	Game game = new Game();
+	private PlayerManager playerManager = ManagerFactory.getPlayerManager();
+	private DeckManager deckManager = ManagerFactory.getDeckManager();
+	private Game game = new Game();
 	private static GameManager instance = null;
 
 	public static GameManager getInstance() {
@@ -45,28 +44,40 @@ public class GameManagerImpl implements GameManager {
 	}
 
 	@Override
-	public Game newGame(Integer playerNumber, String... strings) {
-		List<String> lstPlayersName = new ArrayList<>();
-		getPlayers(playerNumber, lstPlayersName, strings);
-		getGameHomeDeck(playerNumber);
+	public Game newGame(String... strings) {
+		game = new Game();
+		game.setLstPlayers(getPlayers(strings));
+		getGameHomeDeck(game.getLstPlayers().size());
 		game.setLstLowCostBuildings(deckManager.getGameLowCostBuildingsDeck());
+		game.setLstMidCostBuildings(deckManager.getGameMidCostBuildingsDeck());
+		game.setLstHighCostBuildings(deckManager.getGameHighCostBuildingsDeck());
+		game.setLstSpecialBuildings(deckManager.getGameSpecialBuildingsDeck(game.getLstPlayers().size()));
+		game.setGameFirstPlayer(getFirstPlayerName(game.getLstPlayers()));
 		return game;
+	}
+
+	private List<Player> getPlayers(String... names) {
+		List<Player> lstPlayers = new ArrayList<>();
+		Player player = new Player();
+		for (String name : names) {
+			player = playerManager.getNewPlayer(name);
+			lstPlayers.add(player);
+		}
+		for (int i = 0; i < lstPlayers.size(); i++) {
+			player.getLstPlayerBuildings().get(0).setCardLocation(CardLocation.getByNumber(i + 1));
+			player.setPlayerNumber(i + 1);
+			game.getLstPlayers().add(player);
+		}
+		return lstPlayers;
 	}
 
 	private void getGameHomeDeck(Integer playerNumber) {
 		game.setLstHomeBuildings(deckManager.getGameHomeBuildingsDeck(playerNumber));
-		Collections.shuffle(game.getLstHomeBuildings());
 	}
 
-	private void getPlayers(Integer playerNumber, List<String> lstPlayersName, String... strings) {
-		for (String name : strings) {
-			lstPlayersName.add(name);
-		}
-		for (int i = 0; i < playerNumber; i++) {
-			Player player = playerManager.getNewPlayer(lstPlayersName.get(i), i + 1);
-			player.getLstPlayerBuildings().get(0).setCardLocation(CardLocation.getByNumber(i + 1));
-			game.getLstPlayers().add(player);
-		}
+	@Override
+	public String getFirstPlayerName(List<Player> lstPlayers) {
+		Collections.shuffle(game.getLstPlayers());
+		return lstPlayers.stream().findFirst().get().getName();
 	}
-
 }

@@ -6,7 +6,7 @@ import java.util.List;
 public class Player {
 	private Integer id;
 	private String name;
-	private Integer money;
+	private Integer money = 2;
 	private List<Building> lstPlayerBuildings = new ArrayList<>();
 	private Integer playerNumber;
 	
@@ -15,9 +15,6 @@ public class Player {
 
 	}
 	
-	public Player(String name, Integer playerNumber) {		
-		this(null,name,2,new ArrayList<>(),playerNumber);	
-	}
 
 	public Player(Integer id, String name, Integer money, List<Building> lstPlayerBuildings, Integer playerNumber) {
 		this.id = id;

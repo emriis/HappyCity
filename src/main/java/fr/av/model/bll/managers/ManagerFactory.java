@@ -9,10 +9,6 @@ public class ManagerFactory {
 		return PlayerManagerImpl.getInstance();
 	}
 
-	public static BuildingManager getBuildingManager() {
-		return BuildingManagerImpl.getInstance();
-	}
-
 	public static DeckManager getDeckManager() {
 		return DeckManagerImpl.getInstance();
 	}
